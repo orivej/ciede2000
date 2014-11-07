@@ -7,15 +7,10 @@
 
 (defun sq (x)
   (* x x))
-
-(defun avg (&rest xs)
-  (if (null xs)
-      0
-      (/ (reduce #'+ xs)
-         (length xs))))
-
+(defun avg (x y)
+  (/ (+ x y) 2))
 (defun /1+/ (x y)
-  (if (zerop y) 0 (/ (1+ (/ x y)))))
+  (/ y (+ x y)))
 
 (defun mod-range (x min max)
   (let ((range (- max min)))
@@ -27,8 +22,7 @@
   (* x (/ pi 180)))
 
 (defun atan360 (y &optional x)
-  (mod-range (rad360 (atan y x))
-             0 360))
+  (mod (rad360 (atan y x)) 360))
 (defun sin360 (y)
   (sin (360rad y)))
 (defun cos360 (y)
