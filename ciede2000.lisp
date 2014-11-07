@@ -1,4 +1,3 @@
-
 (defpackage #:ciede2000
   (:use #:cl #:let-plus)
   (:export #:ciede2000))
@@ -77,9 +76,7 @@
          (SC (1+ (* 0.045 C_)))
          (SH (1+ (* 0.015 C_ T=)))
          (RT (* -1 (sin360 (* 2 dF)) RC)))
-    (sqrt (+ (sq (/ dL~ kL SL))
-              (sq (/ dC~ kC SC))
-              (sq (/ dH~ kH SH))
-              (* RT
-                 (/ dC~ kC SC)
-                 (/ dH~ kH SH))))))
+    (let ((dL (/ dL~ kL SL))
+          (dC (/ dC~ kC SC))
+          (dH (/ dH~ kH SH)))
+      (sqrt (+ (sq dL) (sq dC) (sq dH) (* RT dC dH))))))
